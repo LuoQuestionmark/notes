@@ -179,13 +179,17 @@ Vec4 Frag(V2F in) {
 
 ----
 
-![](/home/wluo/Documents/CS-ca/note-img.png)
+![](/home/wluo/Documents/CS-ca/notes/note-img.png)
 
-1d : tableau de valeurs
+*d for dimension*
 
-2d : texture 2D
+- 1d : tableau de valeurs
 
-3d : cube
+- 2d : texture 2D
+
+- 3d : cube
+
+- pas plus de 4 canaux.
 
 ----
 
@@ -194,3 +198,24 @@ Vec4 Frag(V2F in) {
 2 canaux : floattants
 
 3 canaux : + transparance ....
+
+----
+
+type de val
+
+- $\mathbb{Z}$
+- $\mathbb{R}$
+
+précision : nb. bits
+
+### fonction d'échantillonage (sampling)
+
+*显示和模型之间的区别。*
+
+将矩阵的数据映射到$[0, 1]^2$之间。Coordonnées u,v. (u, v, w for three dim.)
+
+
+
+----
+
+## Optimisation

@@ -119,10 +119,36 @@ complexité spatiale : $O(bm)$ (DFS)
 #### problèmes
 
 - 限制深度
-
 - 剪枝
-
 - assumer que l'heuristique représente la fonction de récompense
 
 ### Fonction d'évaluation
 
+----
+
+### Elagage Alpha-Beta
+
+- objectif : calculer la valeur MinMax d'un arbre d'exploration
+- sur le chemin courant, noter le meilleur choix pour alpha/beta
+
+在遍历的同时剪枝、效率依赖于遍历顺序。
+
+avec un ordre parfait, on peut doubler la profondeur de recherche maximal, branching factor $\sqrt{b}$.
+
+## Jeu avec un élément de chance
+
+### expectiminimax (!)
+
+添加一个MAX一个MIN层，然后把随机过程放在中间。Max-Dice-Min-Dice-Max. 还有加权平均数。
+
+【可能minmax在此不重要，只是决策的抽象。】
+
+问题：数值对选择很重要，期望和方差--小概率得到极大值导致选择变化。
+
+----
+
+----
+
+## chess project
+
+http://www.playwitharena.de/ 参考？
