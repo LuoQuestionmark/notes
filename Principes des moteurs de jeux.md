@@ -214,8 +214,155 @@ précision : nb. bits
 
 将矩阵的数据映射到$[0, 1]^2$之间。Coordonnées u,v. (u, v, w for three dim.)
 
+低于材质：采样-如选择左边最近的像素点；平均值。
 
+高于材质：摩尔纹 https://zh.wikipedia.org/zh-cn/%E8%8E%AB%E5%88%97%E6%B3%A2%E7%B4%8B
+
+### Optimisation
+
+*接上文*
+
+texture et couleur : 开发过程中运用不同的色彩探究是否使用了足够分辨率的材质。
+
+----
+
+不同信息：
+
+- 景深
+- 法线方向
+- 反射效果
+- Power (?)
+- 2D 移动信息
+- 颜色贴图 Albeto
+
+----
+
+### Appel de rendu
+
+精灵图；所有的shade放在一张图上……
+
+VBO: -soleil-arbre1-arbre2-…-
+
+un seul appel de rendu.
+
+----
 
 ----
 
 ## Optimisation
+
+- CPU
+  - threads
+  - nb. instructions
+- GPU
+  - mémoire
+  - complexité
+  - nb. pixels
+- RAM
+  - quantité utilisée
+  - nb. accès
+- Stockage
+  - temps accès
+  - débit
+- ~~E/S~~
+- Réseau
+  - latence
+  - débit
+
+----
+
+例子：stockage 的 temps d'accès
+
+由于磁盘的特性[^3]，顺序访问比乱序访问快。
+
+[^3]: 机械硬盘
+
+例子：stockage : débit de la (dé)compression
+
+- LZMA
+
+https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Markov_chain_algorithm
+
+- LZ4
+
+----
+
+CPU: CPU framegraphes
+
+CPU 算法：
+
+| pile   | tas    |
+| ------ | ------ |
+| print  | string |
+| struct | clss   |
+
+CPU concat 操作
+
+一次 join 操作嗯个优于多次+操作。
+
+GC 垃圾处理
+
+*“基于引用的”*
+
+weakref *嗯这个我也知道*
+
+```c#
+weakRef img;
+Image i = i.Target;
+if (i == null) {
+	i = Download(...);
+	img.Target = i;
+}
+i.Display();
+```
+
+```c
+// 脏字节
+struct Vec2 {
+	float x, y;
+    // float len;
+    // boolean dirty;
+}
+
+float genLen() {
+    if (dirty) {
+        len = sqrt(...);
+        dirty = false;
+    }
+    return len;
+}
+
+Vec2 normalized() {
+	float len = sqrt(pow(x,2) + pow(y,2));
+	return Vec2{x * len, y * len};
+}
+
+```
+
+```c++
+// c++
+auto * obj = new Objet();
+delete(obj);
+```
+
+```pseudocode
+// do it once per frame
+// so when the next frame comes it won't be used
+// actually pretty cool
+struct Allocator {
+	char buffer[64 Mo];
+	int offset = 0;
+	void * Alloc (int size) {
+		char * ptr = buffer + offset;
+		offset += size;
+		return ptr;
+	}
+	void Free (void * ptr) {
+		// empty
+	}
+	void Reset() {
+		offset = 0;
+	}
+}
+```
+
