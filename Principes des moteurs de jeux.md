@@ -366,3 +366,73 @@ struct Allocator {
 }
 ```
 
+## Plugin & Middleware
+
+插件：层次在“程序”之上
+
+Middleware: 帮助程序构成（？）
+
+### middleware example
+
++ `Speed Tree`，创造游戏中的树
++ `Havok`
++ `PhysiX`
++ `Wwise`
+
+### compilateur
+
+`.cpp`, `.h` -compilateur-> `.obj` -liaison-> `.exe`
+
+连接：定位外部符号。
+
+问题：若 middleware 不支持某个系统（如缺乏对应编译器），则无法使用编译的`.obj`文件，无法使用静态连接库。
+
+### middleware which want to communicate directly with others
+
+----
+
+### plugin: 动态连接库
+
+*当时做项目是王哲写的这部分*
+
+comp -> liaison -> `.dll`
+
+> Dependency Walker
+
+```c++
+HMODULE * malib = LoadLibrary("malib.dll");
+using FnAType = void (*) (void);
+FnAType FnA = (FnAType) GetProcAddr(malib, "FnA");
+FnA();
+```
+
+问题：如果函数类型不对则存在堆被炸掉的可能性。
+
+### QueryInterface
+
+```c++
+struct IUnknown {}
+
+struct IPatate {
+    void (*boil) (int temp);
+    void (*frite) ();
+    int (*good) (bool salt);
+};
+PATATE_UUID = ...;
+
+QueryInterface(IUnknown ** i, UUID id) {
+	if (id == PATATE_UUID) {
+        IPatate* patate = (Ipatate*) *i;
+        patate->boil = &BoilPatate;
+        return true;
+    }
+    return false;
+}
+
+IPatate patate;
+QueryInterface(&patate, PATATE_UUID)
+```
+
+## 一些关于工具自动化的思考
+
+比方说做个热点图观察人死在哪了。

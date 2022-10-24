@@ -42,7 +42,7 @@ Dans ce cas, nous pouvons utiliser les algorithmes d'amlioration itérative
 
 与贪心算法的区别：不取消“更差状态”、不存储某些结果。
 
-### Simulated annealing 退货算法
+### Simulated annealing 退火算法
 
 ```python
 for t = [1:inf]

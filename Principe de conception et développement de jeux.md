@@ -1,6 +1,6 @@
 # Principe de conception et développement de jeux
 
-*欠的先欠着，平台叫moodle。*
+*欠的先欠着，平台叫 moodle。*
 
 [TOC]
 
