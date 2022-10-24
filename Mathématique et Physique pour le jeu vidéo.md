@@ -178,7 +178,11 @@ $q = \Theta q_b + p$ *两行之前*
 - tangage
 - roulis
 
-问题：操作顺序对结果有影响
+问题：
+
+- 操作顺序对结果有影响
+
+- gimnal lock
 
 #### axes-angles
 
@@ -187,11 +191,16 @@ $q = \Theta q_b + p$ *两行之前*
 
 #### matrice de rotation
 
-#### quaternions 那个3B1B视频
+#### quaternions 四元数 
+
+那个3B1B视频:
 
 > [Visualizing quaternions (4d numbers) with stereographic projection - YouTube](https://www.youtube.com/watch?v=d4EgbgTm0Bg)
 
 $[w \ \vec v] = [cos(\theta/2) \ sin(\theta/2)\hat n]$ 
+$$
+[w (x, y, z)] = [cos(\theta/2) (sin(\theta/2)\vec x \ \cdots)]
+$$
 
 ##### multiplication de quaternion
 
@@ -205,3 +214,125 @@ $\sqrt{w^2 + x^2 + y^2 + z^2} = 1$
 - seulement quatre valeurs à conserver
 - représentation compact et pratique pour les jeux en réseaux
 
+### vélocité et accélération angulaire
+
+la vélocité angulaire
+$$
+\dot \theta = r \hat a
+$$
+
+$$
+{\dot \theta}' = ...
+$$
+
+$$
+p' = p + \dot pt
+$$
+
+$$
+\theta' = \theta + \frac{\Delta t}{2}\omega\theta \\
+\omega = \begin{bmatrix} 0 \\x\\y\\z \end{bmatrix}
+$$
+
+### Vélocité d'un point d'un objet
+
+$$
+\dot q = \dot \theta \times (q - p) + \dot p
+$$
+
+#### matrices
+
+#### matrices en tant que transformation
+
+#### produit de matrices de transformation
+
+#### matrice 3D avec translation
+
+$$
+\begin{matrix}x \\ y \\ z\end{matrix} \to \begin{matrix}x \\ y \\ z \\ 1\end{matrix} 
+$$
+
+$$
+\begin{bmatrix}M & \vec v \\ 0 & 1\end{bmatrix}
+$$
+
+##### matrix $3 \times 4$
+
+平移放在第四列，然后位置向量尾巴上加个一。
+
+#### matrix transposé
+
+注意到对于旋转变换矩阵，其逆矩阵等于其转置。
+
+#### conversion de quaternion en matrice
+
+*用的时候再查，懒得抄了。*
+
+#### transformation de direction
+
+- la transformation d'un vecteur de direction ne deverait pas être affectée par les translations
+- la solution consiste à ignorer le dernier élément
+
+#### changement de base
+
+非坐标系原点的物体的旋转
+
+那个从来记不清顺序的$PBP^{-1}$
+
+## Couple et moment d'intertie
+
+### 牛二
+
+$$
+\ddot p = m^{-1}f
+$$
+
+pour les rotations,
+$$
+\tau = I \ddot \theta \implies \ddot \theta = I^{-1} \tau
+$$
+
+- $\tau$ le **couple**
+- $I$ le **moment d'inertie**
+
+### Couple (moment de force)
+
+$$
+\tau = p_f \times f
+$$
+
+$f$ est la force, $P_f$ le point où la force est appliquée et $\tau$ est le couple.
+
+### Le moment d'inertie
+
+$$
+I_a = \sum {m_i}d^2_{p_i \to a}
+$$
+
+$d^2_{p_i \to a}$ est la distance entre le point et l'axe de rotation.
+
+### Tenseur d'inertie
+
+$$
+I = \begin{bmatrix}
+I_x & -I_{xy} & -I_{xz} \\
+	& I_y & -I_{yz} \\
+    &	& I_z
+\end{bmatrix}
+$$
+
+有些计算好的样例。
+
+### Inverse du tenseur d'inertie
+
+$$
+\ddot \theta = I^{-1} \tau
+$$
+
+### 世界-本地变换
+
+同前文：本地坐标系和世界的变换。
+
+### 可加性
+
+$\tau$ 是可加的。
