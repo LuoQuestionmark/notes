@@ -58,7 +58,7 @@ Axis Mappings
 
 ## UI 重叠/隐藏
 
-- 显示隐藏	
+- 显示隐藏
 
 ## IA
 
