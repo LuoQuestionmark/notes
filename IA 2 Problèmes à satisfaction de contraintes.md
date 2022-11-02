@@ -1,4 +1,4 @@
-# IA 2 ： Problèmes à satisfaction de contraintes
+# IA 2 ：Problèmes à satisfaction de contraintes
 
 ## Introduction
 

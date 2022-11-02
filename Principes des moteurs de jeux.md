@@ -131,16 +131,16 @@ glDrawElements(VBO, index, 17);
 ```c++
 // VBO
 struct {
-	float x, y, z;
-	float u, v;
-	int temp;
+  float x, y, z;
+  float u, v;
+  int temp;
 };
 ```
 
 ```c++
 // VS
 struct in {
-	Vec3 pos, sv_position;
+  Vec3 pos, sv_position;
     Vec2 uv;
     int temp;
 }
@@ -151,8 +151,8 @@ Sampler2D nuage;
 
 ```c++
 struct V2F {
-	Vec3 pos;
-	Vec2 uv;
+  Vec3 pos;
+  Vec2 uv;
 };
 
 V2F vect(vin in) {
@@ -166,8 +166,8 @@ V2F vect(vin in) {
 ```c++
 // FS
 Vec4 Frag(V2F in) {
-	Vec4 col  tex2D(nuage, in.uv);
-	float l = col.r * 0.2 + col.g * 0.7 + col.b * 0.1;
+  Vec4 col  tex2D(nuage, in.uv);
+  float l = col.r * 0.2 + col.g * 0.7 + col.b * 0.1;
     return Vec4(l, l, l, col.a);
 } 
 ```
@@ -195,9 +195,9 @@ Vec4 Frag(V2F in) {
 
 1 canal: 32bits entier
 
-2 canaux : floattants
+2 canaux : flottants
 
-3 canaux : + transparance ....
+3 canaux : + transparence ....
 
 ----
 
@@ -208,7 +208,7 @@ type de val
 
 précision : nb. bits
 
-### fonction d'échantillonage (sampling)
+### fonction d’échantillonnage (sampling)
 
 *显示和模型之间的区别。*
 
@@ -310,8 +310,8 @@ weakref *嗯这个我也知道*
 weakRef img;
 Image i = i.Target;
 if (i == null) {
-	i = Download(...);
-	img.Target = i;
+  i = Download(...);
+  img.Target = i;
 }
 i.Display();
 ```
@@ -319,7 +319,7 @@ i.Display();
 ```c
 // 脏字节
 struct Vec2 {
-	float x, y;
+  float x, y;
     // float len;
     // boolean dirty;
 }
@@ -333,8 +333,8 @@ float genLen() {
 }
 
 Vec2 normalized() {
-	float len = sqrt(pow(x,2) + pow(y,2));
-	return Vec2{x * len, y * len};
+  float len = sqrt(pow(x,2) + pow(y,2));
+  return Vec2{x * len, y * len};
 }
 
 ```
@@ -350,19 +350,19 @@ delete(obj);
 // so when the next frame comes it won't be used
 // actually pretty cool
 struct Allocator {
-	char buffer[64 Mo];
-	int offset = 0;
-	void * Alloc (int size) {
-		char * ptr = buffer + offset;
-		offset += size;
-		return ptr;
-	}
-	void Free (void * ptr) {
-		// empty
-	}
-	void Reset() {
-		offset = 0;
-	}
+  char buffer[64 Mo];
+  int offset = 0;
+  void * Alloc (int size) {
+    char * ptr = buffer + offset;
+    offset += size;
+    return ptr;
+  }
+  void Free (void * ptr) {
+    // empty
+  }
+  void Reset() {
+    offset = 0;
+  }
 }
 ```
 
@@ -374,10 +374,10 @@ Middleware: 帮助程序构成（？）
 
 ### middleware example
 
-+ `Speed Tree`，创造游戏中的树
-+ `Havok`
-+ `PhysiX`
-+ `Wwise`
+- `Speed Tree`，创造游戏中的树
+- `Havok`
+- `PhysiX`
+- `Wwise`
 
 ### compilateur
 
@@ -421,8 +421,8 @@ struct IPatate {
 PATATE_UUID = ...;
 
 QueryInterface(IUnknown ** i, UUID id) {
-	if (id == PATATE_UUID) {
-        IPatate* patate = (Ipatate*) *i;
+  if (id == PATATE_UUID) {
+        IPatate* patate = (IPatate*) *i;
         patate->boil = &BoilPatate;
         return true;
     }
