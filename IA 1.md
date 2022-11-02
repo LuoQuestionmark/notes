@@ -13,7 +13,7 @@ Bonne solution dans le temps raisonable.
 
 Dans de nombreux problèmes, le chemin n'est pas important
 
-Dans ce cas, l'espace d'états = ensemble des onfigurations complètes
+Dans ce cas, l'espace d'états = ensemble des configurations complètes
 
 Dans ce cas, nous pouvons utiliser les algorithmes d'amlioration itérative
 
