@@ -41,14 +41,23 @@ La cinématique directe est facile à résoudre, l'inverse est plus compliquée.
 
 ## ...
 
-### obstacles
+### Obstacles
 
 L'ensemble des espaces sans collision est l'espace libre.
 
 (e.g. un sous-espace de $\Theta^2$ si on a $\theta_1, \theta_2$ comme var.)
 
-### planification par échantillonnage
+### Planification par échantillonnage
 
 #### probabilistic road maps (PRMs)
 
 空间中取数个点，观察两两之间的连线，是否被障碍阻隔。
+
+#### défis de PRMs
+
+- comment savoir si un chemin cause une collision ?
+- des goulots d’étranglement 瓶颈
+
+### Rapidly-exploring random trees
+
+在领域中选择点观察是否有碰撞，重复此过程。
