@@ -108,3 +108,25 @@ Interface IDeserializer {
 | 慢[^1]                 | 快       |
 
 [^1]: 由于分支预测功能可能会相较更快。
+
+### 类型检查
+
+```c++
+LuaVM* vm = new LuaVM();
+vm->Register("myFun", &myFun, LuaInt, [LuaInt]);
+
+ctx->Exec("test.lua");
+```
+
+with
+
+```lua
+var a = ()
+a = myFun(a)
+```
+
+跳过检查：
+
+使用有功能的注释、使用有反射的语言进行预检查。
+
+> duck typing； “鸭子类型”
