@@ -336,3 +336,82 @@ $$
 ### 可加性
 
 $\tau$ 是可加的。
+
+## Détection de collision
+
+### Physique et détection de collsion
+
+Le système de détection de collsision n'est pas utilse que pour la physique.
+
+- le rendu graphique peut également utiliser les mêmes principes de détection pour savoir quoi rendre à l'écran ;
+- le gameplay peut utiliser la détection de collsion mêmes si cela n'est pas directement reliée à la physique
+  - détection un objet dans une zone
+  - détecter si un objet est dans le champ de vision
+
+### Problèmes de la détection de collisions
+
+Chaque objet peut entrer en collision avec n'importe quel autre, $O(n^2)$
+
+Chaque collision est géométriquement complexe.
+
+### Propriété de la Board-Phase
+
+- toutes les collisions de la simulation doivent être contenues dans la liste potentielles
+
+- la liste doit être plus petite possible
+
+### volume englobant
+
+sphère, AABB alix-alignes bounding box, OBB oriented bounding box, 8-DOP discrete-oriented plotopes, convex Hull
+
+从左到右逐渐精确，但是增加复杂度。
+
+### méthodes pour réduire le nombre de test de collisions
+
+### hiérarchie de volumes englobants (BVH)
+
+arbre (binaire) dont les noeuds correspondent au volume englobant de ses enfants
+
+将整体的碰撞块再细分。逐步检测。适用于静态物体。
+
+#### construction d'un BVH
+
+- top-down
+- bottom-up
+- insertion
+
+### grilles
+
+on utilise une grille contenant des cellules de taille uniforme
+
+- facile à implémenter
+- chaque cellule est accessible de manière constante, il est donc facile de placer les objets dans la grille
+- difficile de choisir la taille de grille
+
+#### grilles hiérarchiques (multiresolution maps)
+
+- utilise plusieurs grilles de cellules de taille différentes
+- convient à des scènes qui ont des objets de tailles différents
+
+#### quatree / octree
+
+### arbre BSP binary binary space partitioning
+
+utilisation d'un plan
+
+```c
+struct {
+	Vect position;
+	vect direction;
+}
+```
+
+### critère de sélection des algorithmes
+
+la taille de objets, la complexité des objets
+
+la taille de la scène
+
+la quantité d'objet dans la scènes
+
+le type d'objet
