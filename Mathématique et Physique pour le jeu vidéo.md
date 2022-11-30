@@ -388,12 +388,12 @@ on utilise une grille contenant des cellules de taille uniforme
 - chaque cellule est accessible de manière constante, il est donc facile de placer les objets dans la grille
 - difficile de choisir la taille de grille
 
-#### grilles hiérarchiques (multiresolution maps)
+#### grilles hiérarchiques (multi-resolution maps)
 
 - utilise plusieurs grilles de cellules de taille différentes
 - convient à des scènes qui ont des objets de tailles différents
 
-#### quatree / octree
+#### quad-tree / oct-tree
 
 ### arbre BSP binary binary space partitioning
 
@@ -402,7 +402,7 @@ utilisation d'un plan
 ```c
 struct {
 	Vect position;
-	vect direction;
+	Vect direction;
 }
 ```
 
@@ -415,3 +415,117 @@ la taille de la scène
 la quantité d'objet dans la scènes
 
 le type d'objet
+
+## Génération de contacts
+
+- broad phase
+- narrow phase
+- génération du collision
+
+### Géométrie de collision
+
+rendu (polugon meshs) 显示的模型
+
+collisions (primitives) 碰撞块
+
+volume englobant (BV) 包裹的区域
+
+### 6 types de contacts en 3D
+
+$$
+x \in \{point, face, edge\} \\
+(x_1, x_2) \coloneqq collision
+$$
+
+détection des contacts par priorité :
+
+- point-face, edge-edge
+- edge-face, face-face
+- ...
+
+### données de collisions
+
+- pointe de contact
+- normal de contact
+- pénétration
+- corps rigides concernées
+- coefficient de restitution
+- friction
+
+(一些细节，如某种碰撞下法线的计算，参见课件)
+
+### algo de collision simple
+
+```cpp
+void generateContacts(const Primitive &first, const Primitive &second, CollisionData* data);
+
+class Primitive {
+	public:
+    RigidBody* body;
+    Matrix4 offset;
+};
+```
+
+### Sphère
+
+```cpp
+class Sphere: public Primitive {
+    
+};
+```
+
+### Plan
+
+```cpp
+class Plane: public Primitive {
+public:
+    Vector3 normal;
+    real offset;
+};
+```
+
+### Boîte
+
+```cpp
+class Box: public Primitive {
+	public:
+    Vector3 halfSize;
+};
+```
+
+test every point of the 8 vertex of box.
+
+### Boîte-Sphère
+
+```cpp
+dist = realEnter.x;
+if (dist > box.halfSize.x) dist = box.halfSize.x;
+if (dist < - box.halfSize.x) dist = -box.halfSize.x;
+closestPt.x = dist;
+
+// same for y, z
+```
+
+“最大化碰撞”
+
+### collisions entre polyèdres convexes
+
+- Separating Axis Tests
+- Gilbert-Johnson-Keerthi
+- Voronoi-Clip
+
+#### GJK
+
+Let $a_i$ every vertex of $A$, $b_i$ every vertex of B, then $\{a_i-b_j\}$ is a polygone, if which covers the origin point, then $A$ $B$ collide.
+
+闵可夫斯基和
+
+#### SAT
+
+S'il existe un axe selon lequel deux objets sont séparés, alors les objets ne sont pas en contact ;
+
+pour un polyèdre convexe, les axes à tester sont :
+
+- la normal de tous les faces des deux objets
+- l'angle d'angle droites à tous les paris d'arêtes des différents objets
+- les axes similaires ou de direction ...
