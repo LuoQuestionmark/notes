@@ -529,3 +529,92 @@ pour un polyèdre convexe, les axes à tester sont :
 - la normal de tous les faces des deux objets
 - l'angle d'angle droites à tous les paris d'arêtes des différents objets
 - les axes similaires ou de direction ...
+
+## Résoltion de collsion (corps rigide)
+
+La différence  :
+
+- vitesse angulaire (impulsion de couple)
+- modification de l'orientation
+
+### Impulsion de couple
+
+couple
+$$
+r = p_f \times f \\
+\tau = I \ddot \theta \\
+\ddot \theta = I^{-1} \tau
+$$
+implusion de couple
+$$
+u = I \dot \theta \\
+\dot \theta = I^{-1} u
+$$
+
+### Gestion de collisions rotationnelles
+
+$$
+v_s' = - c v_s
+$$
+
+On calculera cette vitesse au point de contact en prenant en compte la vitesse angulaire des corps rigides. 
+
+### Impulsion de collisions#
+
+- création d'une base au point de contact
+- calculer le changement de vélocité
+- inverser le résultat pour obtenir l'implusion nécessaire à un changement de vélocité
+- calculer la vélocité désirée
+- de la vélocité désirée, calculer l'impulsion nécessaire
+- ...
+
+### Changement de coordonnée de contact
+
+vitesse d'un point d'un objet
+
+课程过得太快，需要回头补课件
+
+主要思路是在接触点建系，计算各种数据之后还原到各自的坐标系。
+
+### Résolution de l'interpénétration
+
+#### méthode de résolution
+
+- projection linéaire
+- résolution basée sur la vélocité
+- projection non-linaire
+
+#### projection non-linéaire
+
+On souhaite pondérer le déplacement selon :
+
+- l'inertie de chacun des objets
+
+- l'inertie linéaire et angulaire
+
+#### calcul des composantes
+
+calcul de l'inertie linéaire pour chaque objet
+
+calcul de l'inertie angulaire pour chaque objet
+
+pondèrement
+
+#### application du mouvement angulaire
+
+calculer la rotation nécessaire
+
+multiplier par le nombre d'unité nécessaire
+
+appliquer la rotation au quaternion d'orientation
+
+#### éviter la sur-rotation
+
+on peut limter la rotation à une certaine valeur
+
+## Pipeline de résolution de collisions
+
+1. Force/Torque generators
+2. Rigid-body update
+3. Contact generator
+4. Contact resolution
