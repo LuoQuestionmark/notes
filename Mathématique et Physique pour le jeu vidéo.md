@@ -106,7 +106,7 @@ solutions :
 ### Algo : résolveur de contact
 
 - entrée : liste de contacts
-- algo : 
+- algo :
   - application de l'impulsion
   - résolution des interpénétrations
   - gestion des contacts au repos
@@ -116,7 +116,7 @@ solutions :
 
 ### ordre de résolution
 
-résoudre les contacts les plus importants d'abord. 
+résoudre les contacts les plus importants d'abord.
 
 ### pseudo contact entre particule
 
@@ -130,7 +130,7 @@ résoudre les contacts les plus importants d'abord.
 
 ### Rotations et Orientation
 
-- la simulation de corps rigides implique d'aoir des objets qui peuvent tourner en plus de se déplacer
+- la simulation de corps rigides implique d'avoir des objets qui peuvent tourner en plus de se déplacer
 - tout comme c'est le cas pour la position, l'orientation d'un objet sera modifiée par le processus d'intégration
 
 | 动量     | 角动量            |
@@ -191,13 +191,13 @@ $q = \Theta q_b + p$ *两行之前*
 
 #### matrice de rotation
 
-#### quaternions 四元数 
+#### quaternions 四元数
 
 那个3B1B视频:
 
 > [Visualizing quaternions (4d numbers) with stereographic projection - YouTube](https://www.youtube.com/watch?v=d4EgbgTm0Bg)
 
-$[w \ \vec v] = [cos(\theta/2) \ sin(\theta/2)\hat n]$ 
+$[w \ \vec v] = [cos(\theta/2) \ sin(\theta/2)\hat n]$
 $$
 [w (x, y, z)] = [cos(\theta/2) (sin(\theta/2)\vec x \ \cdots)]
 $$
@@ -249,7 +249,7 @@ $$
 #### matrice 3D avec translation
 
 $$
-\begin{matrix}x \\ y \\ z\end{matrix} \to \begin{matrix}x \\ y \\ z \\ 1\end{matrix} 
+\begin{matrix}x \\ y \\ z\end{matrix} \to \begin{matrix}x \\ y \\ z \\ 1\end{matrix}
 $$
 
 $$
@@ -316,8 +316,8 @@ $d^2_{p_i \to a}$ est la distance entre le point et l'axe de rotation.
 $$
 I = \begin{bmatrix}
 I_x & -I_{xy} & -I_{xz} \\
-	& I_y & -I_{yz} \\
-    &	& I_z
+    & I_y & -I_{yz} \\
+    &     & I_z
 \end{bmatrix}
 $$
 
@@ -341,10 +341,10 @@ $\tau$ 是可加的。
 
 ### Physique et détection de collsion
 
-Le système de détection de collsision n'est pas utilse que pour la physique.
+Le système de détection de collision n'est pas utilise que pour la physique.
 
 - le rendu graphique peut également utiliser les mêmes principes de détection pour savoir quoi rendre à l'écran ;
-- le gameplay peut utiliser la détection de collsion mêmes si cela n'est pas directement reliée à la physique
+- le gameplay peut utiliser la détection de collision mêmes si cela n'est pas directement reliée à la physique
   - détection un objet dans une zone
   - détecter si un objet est dans le champ de vision
 
@@ -401,8 +401,8 @@ utilisation d'un plan
 
 ```c
 struct {
-	Vect position;
-	Vect direction;
+    Vect position;
+    Vect direction;
 }
 ```
 
@@ -460,7 +460,7 @@ détection des contacts par priorité :
 void generateContacts(const Primitive &first, const Primitive &second, CollisionData* data);
 
 class Primitive {
-	public:
+public:
     RigidBody* body;
     Matrix4 offset;
 };
@@ -488,7 +488,7 @@ public:
 
 ```cpp
 class Box: public Primitive {
-	public:
+public:
     Vector3 halfSize;
 };
 ```

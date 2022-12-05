@@ -57,6 +57,12 @@ message historique	pour (aider à la garantie de réception)
 - taille
 - contenu
 
+## 一些处理延迟的方法
+
+interpolation （visual）
+
+不同端不同事件（刺客信条2）
+
 ## Appendix
 
 ### RAID
