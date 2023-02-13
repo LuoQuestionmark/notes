@@ -50,12 +50,50 @@ les six chapeaux de Bono（“角色扮演决策”）
 
 ## Le "fun", le "flow", le "game feel"
 
+### fun
+
 le cerveau est "content" avec de nouveaux patrons
 
 “靠理解获得胜利”
+
+### flow
+
+心流，难度曲线。
 
 ### game design vs level design
 
 gme design create the rules, level design use the rules.
 
 “心流”
+
+### game feel
+
+游戏与玩家的“交流”
+
+----
+
+- entrée
+- réponse
+- contexte
+  - monde doit donner un sens aux capacités offertes au joueur
+- polish 精致程度
+- métaphore （此处指给玩家的感受）
+- règles
+
+## Approches de découverte de concept
+
+探索型、升级型、适应型
+
+## Quelques pièges
+
+tout le monde n'est pas une cible
+
+estimation de la difficulté
+
+savoir couper
+
+avoir une chaîne d'approbation
+
+donner son avis
+
+ne pas réinventer la roue

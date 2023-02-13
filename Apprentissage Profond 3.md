@@ -1,165 +1,104 @@
-# Apprentissage Profond 3 tour des algorithmes
+# Apprentissage Profond 3
 
-## Algorithme de classification
+## Introduction
 
-un très grand nombre d'algorithmes de classification
+il s'agit d'un ensemble d'algorithmes développés pour l'entraînement de réseau  de neurones artificiels à plusieurs couches.
 
-aucun algorithme n'est parfait.
+1986, backpropagation.
 
-## Introduction à Scikit Learn
+### retour sur les NN simples
 
-simple and efficient tools, build on `numpy `, `matplotlib`, etc...
+A chaque epoch, on mettait à jour les poids :
+$$
+w = w + \Delta w \\
+\Delta w = - \eta \ \nabla J(w)
+$$
+Le `grad` était calculé sur l'ensemble de données
 
-éviter utiliser la fonction `fit` sur le modèle
+La fonction objectif à optimiser était la *Sum of Squared Errors* (SSE), ou encore *Log-Likelihood*(NLLL).
 
-plusieurs classeur...
+### multiples couches
 
-## Tour des algorithmes
+si plus d'un niveau caché, alors besoin des techniques du deep learning.
 
-### paramétrique ou non ?
+### multi-classe
 
-paramétrique : simple, apprentissage rapide, peu de données requises, etc.
+将特征表示为一个向量；每个可能的选项占一位。如对于一个三个类的数据，分类为
+$$
+\vec {v1} = [1 \ 0 \ 0]\\
+\vec {v2} = [0 \ 1 \ 0]\\
+\vec {v3} = [0 \ 0 \ 1]
+$$
 
-non-paramétrique : flexible, puissant, performant pour la prédiction, surapprentissage, plus lent, etc.
+### perceptron multicouche
 
-“深度学习除外”
+一些关于写法的小提示，没什么特别的。
 
-### Logistic Regression
+matrice $W^{(l)} \in \mathbb{R}^{j \times [k+1]}$ pour représenter les poids de la couche $l$
 
-Fonction de coûts pour Logistic Regression
+## Propagation avant
 
-$L$: loss function
+l'entrée :
+$$
+z_1^{(2)} = \sum_i^m a_i^{(1)} w_{1,i}^{(1)}
+$$
+$z_1^{(2)}$ est l'entrée nette et $\phi$ la fonction. on va utiliser `sigmoids`.
 
-($log L$): Les $log$ permettent d'éviter les *underflow*.
+**注意：**单向传播，无循环。
 
-### SVM
+拓展到向量（一次计算所有特征）
+$$
+z^{(2)} = W^{(1)}a^{(1)}
+\\
+a^{(2)} = \phi(z^{(2)})
+$$
+拓展到矩阵（一次计算所有样本的所有特征）
+$$
+Z^{(l+1)} = W^{(l)} \ {^{t}A^{(l)}}
+$$
+注意到在拓展过程中 $W$ 和 $A$ 顺序的交换，导致数值计算写起来不直观……（也有可能是抄错了，反正不影响实际编程）
 
-dans SVM, maximiser la marge entre les classes
+## Classification de chiffres
 
-切分空间使其到每个类的距离最远。
+`MNIST.py`
 
-#### SVM VS Logistic
-
-donnent des résultats similaires en pratique
-
-#### Kernelisation
-
-Le SVM est populaire parce qu'on peut facilement faire de la kernalisation.
-
-改变样本空间，classeur linéaire vers non-linéaire
+给了个示例程序。
 
 ----
 
-SVC, NuSVC, LinearSVC, SVR, NuSVR, LinearSVR
+### 额外参数
 
-### KNN
-
-choisir un nombre de voisins $k$ et une mesure de distance
-
-trouver kes $k$ voisins les plus proches de l'exemple à classer
-
-faire un vote
-
-### Arbre de décision
-
-nous commençons d'une racine et séparons les données sur l'attribut qui perlet d'obtenir le plus grand **gain d'information**.
-
-avantage : l'explicabilité et la transparence des modèles.
-
-- Classification and Regresion Trees
-- Iterative Dichotomiser
-- C4.5
-- Very Fast Decision Trees
-- etc.
-
-## Surapprentissage
-
-深度学习：即使有大量参数仍然可能欠学习。
-
-## Biais, Variance
-
-定义：已知。
-
-bias-variance tradeoff
-
-Le compromis se situe au niveau de la configuration des algorithmes. 如KNN的$k$值。
-
-## Régularisation L2
-
-idée : introduire un nouveau biais pour péaliser les valeurs extrêmes de poids.
+$\alpha$: momentum
 $$
-\frac \lambda 2 || w || ^ 2 = \frac \lambda 2 \sum_{j=1}^m {w^2_j}
+\Delta W_t = \eta \nabla J( W_{t-1} ) + \alpha \Delta W_{t-1}
 $$
-减少极值，降低误差，增加方差？
-
-L1 又名 LASSO。
-
-## Ensemble learning
-
-使用多个系统，“投票”。
-
-### bagging
-
-sous-ensemble du dataset pour l'entraînement
-
-- boostrap
-- généralement un arbre non-élagué
-
-principaux algorithmes : 
-
-- random forest
-- extremely randomized trees
-- wagging
-
-### stacking
-
-```pseudocode
-for t = 1 ... T
-	h_t = L_1(D)
-end
-
-D2 = \emptyset
-for i = 1 ... m
-	for t = 1 ... t
-		z_it = h_t(x_i)
-	end
-end
-
-// then train on the dataset D2
-```
-
-### boosting
-
-1. maximisation de la fonction de coûts ;
-2. on ajoute les poids, on entraîne un second classeur ;
-3. on ajoute les poids, on entraîne un troisième classeur ;
-4. on combine les classeurs par vote.
-
-### adaboost
-
-1. le vecteur de poids $w$ est initialisé : somme = 1;
-2. pour $j$ dans m cycles de boosting, faire :
-   1. entraîner un classeur faible $C_j = train(X, y, w)$;
-   2. prédire les classes
-   3. calculer le taux pondéré d'erreurs
-   4. calculer un coefficient $\alpha_j = 0.5 log \frac {1 - \epsilon} \epsilon$
-
-...
-
-#### variantes
-
-real adaboost
-
-gentle adaboost
-
-softboost, interactive...
-
-### gradient boosting
-
-https://en.wikipedia.org/wiki/Gradient_boosting
+d: decrease reduce the leanring rate
 $$
-\hat y^{(0)} = 0 \\
-\hat y^{(1)} = y^{(0)} + f_1(x_i) \\
-\hat y^{(2)} = y^{(1)} + f_2(x_i) \\
-\vdots
+\eta /(1 + t \cdot d)
 $$
+
+## Entraînement
+
+### fonction de coûts
+
+$$
+J(w) = \sum_{i = 1}^n {y^{(i)} log(a^{(i)}) + (1 - y^{(i)}) \cdots}
+$$
+
+加正减负。
+
+## Backpropagation
+
+Nous commençons donc par trouver le vecteur d'erreur
+$$
+\delta^{(3)} = a^{(3)} - y
+\\
+\delta^{(2)} = (W^{(2)})^T (\delta^{(3)} * \frac {\partial \phi (z^{(2)})}{\partial z^{(2)}})
+$$
+
+$$
+\frac {\partial}{\partial w^l_{i, j}} J(W) = a_j^{(i)} \delta^{(l+1)}
+$$
+
+（换ppt太快，失记）
+
