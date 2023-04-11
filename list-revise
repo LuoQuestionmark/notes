@@ -1,0 +1,20 @@
+apprentissage de représentation ?
+deep learning - fait par il même
+type de apprentissage
+classification, regression, clustering, renforcement
+réduction de dimensionnalité
+comment représenter des données
+balancement des données (représentativité)
+processus générique du ML c.f. `pdf1`
+perceptron
+hyper-paramètre
+batch mini-patch ?
+logistic regression
+interprétation sigmoid
+paramétrique ou non ?
+SVM intuition
+arbre de décision "algo transparent"
+sur-apprentissage
+bagging stacking boosting
+propagation avant
+one-hot
