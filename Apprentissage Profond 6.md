@@ -68,7 +68,7 @@ Conceptuellement, cela implique un *embedding* mathématique d'un espace avec de
 
 ## Réseau de neurones récurents RNN
 
-*Recurrent Neural Network*
+aka *Recurrent Neural Network*
 
 Une famille de réseaux de neurones qui sert aux données séquentielles.
 

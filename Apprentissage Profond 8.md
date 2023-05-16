@@ -63,4 +63,3 @@ VAE 的代码在 PPT 里面。
 ### Deep recurrent attentive writer
 
 在以上网络基础上加入“时序”，第一个 decoder 的结果喂给第二个 encoder ……
-

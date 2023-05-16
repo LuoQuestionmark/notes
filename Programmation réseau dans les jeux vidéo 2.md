@@ -4,44 +4,44 @@
 
 ```txt
 AGameMode
-	Règles de jeu
-	Server only # client return null
-	e.g. N players
+    Règles de jeu
+    Server only # client return null
+    e.g. N players
 ```
 
 ```txt
 AGameState
-	Données de la game
-	Autorité serveur
-	Repliqué client
-	e.g. team score
+    Données de la game
+    Autorité serveur
+    Repliqué client
+    e.g. team score
 ```
 
 ```txt
 APlayerState
-	Données d'un player
-	Autorité serveur
-	Repliqué clients
-	e.g. K/D
+    Données d'un player
+    Autorité serveur
+    Repliqué clients
+    e.g. K/D
 ```
 
 ```txt
 APlayerController
-	Contrôle un player
-	Autorité serveur
-	Repliqué sur le owning client
-	e.g. Life
+    Contrôle un player
+    Autorité serveur
+    Repliqué sur le owning client
+    e.g. Life
 ```
 
 ```txt
 APawn / ACharacter
-	Représentation Player
-	Autorité serveur
-	Repliqué aux clients
-	e.g. Mesh
+    Représentation Player
+    Autorité serveur
+    Repliqué aux clients
+    e.g. Mesh
 ```
 
-```
+```c++
 AHud
 ```
 
@@ -100,7 +100,7 @@ Server own TOUT, sauf :
 
 ```txt
 Actor
-	Collider
+    Collider
 Component
 Line Sweep
 Interface
@@ -119,27 +119,27 @@ File named `*.Build.cs` can add dependencies:
 
 ```csharp
 PublicDependcyModuleNames.AddRange(
-	new String[] {
-		"Core",
-		"AIModule",
-		// dependcies
-	}
+    new String[] {
+        "Core",
+        "AIModule",
+        // dependcies
+    }
 );
 ```
 
 ```c++
 class SomeClass: public OtherClass
 {
-	void SomeClass::StartupModule() {}
-	void SomeClass::ShutdownModule() {}
-	// 不要乱动……
+    void SomeClass::StartupModule() {}
+    void SomeClass::ShutdownModule() {}
+    // 不要乱动……
 }
 ```
 
 ```c++
 UINTERFACE()
 class UIFInterface: public UInterface {
-	GENERATED_BODY()
+    GENERATED_BODY()
 }; // no touche pas
 
 class INTERACTFRAMEWORK_API IIFInteractable : public AActor : public Interactable
@@ -180,11 +180,10 @@ BP_Interact(Interactor);
 ```c++
 void UIFInteractorComponent::Interact()
 {
-	if (!GetOwner()->HasAuthority()) {
-		Server_Interact();
-		return;
-	}
-	XXX();
+    if (!GetOwner()->HasAuthority()) {
+        Server_Interact();
+        return;
+    }
+    XXX();
 }
 ```
-
