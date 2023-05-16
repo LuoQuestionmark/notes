@@ -1,20 +1,47 @@
 apprentissage de représentation ?
+atomic, factored, structured
+atomic 独立的; factored/factorisée : les états ont des propriétés
+structured 属性之间连接的
+
 deep learning - fait par il même
 type de apprentissage
-classification, regression, clustering, renforcement
-réduction de dimensionnalité
+有监督学习 : fonction qui associe l'entrée et la sortie
+无监督
+强化 en fonction de récompenses ou punitions
+
+classification, un ensemble fini de valeurs catégoriques
+regression, un semble de valeurs continue
+clustering, regrouper et différencier
+renforcement, tente d'améliorer une fonction d'argent par l'expérience
+réduction de dimensionnalité 
+
 comment représenter des données
 balancement des données (représentativité)
 processus générique du ML c.f. `pdf1`
-perceptron
+perceptron 单层的神经网络
 hyper-paramètre
 batch mini-patch ?
 logistic regression
 interprétation sigmoid
 paramétrique ou non ?
 SVM intuition
+Logistic: maximise les probabilités conditionnelles des
+échantillons
+▪ Plus sensible aux données aberrantes (outliers)
+▪ Modèle plus simple
+▪ Plus facile à implémenter
+▪ Plus facile à mettre à jour
+▪ SVM
+▪ Principalement préoccupé par les échantillons à la frontière des
+classes
+▪ Peu avantageux par rapport à logistic regression
+
 arbre de décision "algo transparent"
 sur-apprentissage
-bagging stacking boosting
+
+bagging sous ensemble du dataset, "voting"
+stacking 训练一个“二阶”模型和多个“一阶”模型，“二阶”模型用于找出最适的一阶模型。
+boosting 与 bagging 相似……
+
 propagation avant
 one-hot
